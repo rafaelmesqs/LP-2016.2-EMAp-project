@@ -18,7 +18,8 @@
           (for ((j (range i (+ (length lst) 1))))
             (begin (set! p (append p (list (X lst i j))))
                    (print p)))))))
-
+                   
+;;;Código original do artigo:
 ;MaxSoFar :-- 0.0
 ;for L := 1 to N do
 ;for U := L to N do
@@ -27,7 +28,7 @@
 ;Sum := Sum + X[I]
 ;/* Sum now contains the
 ;sum of X[L..U] */
-;MaxSoFar := max(MaxSoFar, Sum)  
-(require racket/trace)
+;MaxSoFar := max(MaxSoFar, Sum) 
 
+;(require racket/trace)
 ;(trace X)
