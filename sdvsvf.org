@@ -1,22 +1,22 @@
-#+Title: Projeto: Tradução de artigo para Racket
+#+Title: Projeto: TraduÃ§Ã£o de artigo para Racket
 
 #+Author: Paula Daco e Rafael Mesquita
 
-* Introdução
+* IntroduÃ§Ã£o
 
-Neste projeto, vamos implementar em Racket três pseudocódigos do /essay/ "Algorithm Design Techniques" da coluna "Programming Pearls" da revista da Association for Computing Machinery, escrito pelo cientista da computação Jon Bentley, em 1984. 
+Neste projeto, vamos implementar em Racket trÃªs pseudocÃ³digos do /essay/ "Algorithm Design Techniques" da coluna "Programming Pearls" da revista da Association for Computing Machinery, escrito pelo cientista da computaÃ§Ã£o Jon Bentley, em 1984. 
 
-A coletânea dos textos da "Programming Pearls" é um clássico da commputação, citado por quase 300 papers da área, mas "Algorithm Design Techniques" merece um destaque especial, pois apresenta a discussão sobre complexidade computacional, algoritmos e técnicas de design de algoritmos de forma acessível e a exemplifica através de um problema específico. 
+A coletÃ¢nea dos textos da "Programming Pearls" Ã© um clÃ¡ssico da commputaÃ§Ã£o, citado por quase 300 papers da Ã¡rea, mas "Algorithm Design Techniques" merece um destaque especial, pois apresenta a discussÃ£o sobre complexidade computacional, algoritmos e tÃ©cnicas de design de algoritmos de forma acessÃ­vel e a exemplifica atravÃ©s de um problema especÃ­fico. 
 
-Pensar complexidade e algoritmos é fundamental, permitindo que, com a técnica correta, lide-se com problemas até então considerados intratáveis. 
+Pensar complexidade e algoritmos Ã© fundamental, permitindo que, com a tÃ©cnica correta, lide-se com problemas atÃ© entÃ£o considerados intratÃ¡veis. 
 
-* O problema do subvetor máximo e implementação do primeiro algoritmo
+* O problema do subvetor mÃ¡ximo e implementaÃ§Ã£o do primeiro algoritmo
 
-O problema envolve calcular, dada uma lista, a maior soma em uma sequência de elementos dessa lista. Podemos pensar a lista enquanto um vetor e, assim, queremos identificar o subvetor que contenha a maior soma possível. Os elementos do vetor fazem parte do conjunto de númerosreais, já que, se o vetor fosse composto apenas por números positivos ou números negativos, a solução seria, necessariamente, o próprio vetor (se o vetor for positivo) ou 0 (se o vetor for negativo). 
+O problema envolve calcular, dada uma lista, a maior soma em uma sequÃªncia de elementos dessa lista. Podemos pensar a lista enquanto um vetor e, assim, queremos identificar o subvetor que contenha a maior soma possÃ­vel. Os elementos do vetor fazem parte do conjunto de nÃºmerosreais, jÃ¡ que, se o vetor fosse composto apenas por nÃºmeros positivos ou nÃºmeros negativos, a soluÃ§Ã£o seria, necessariamente, o prÃ³prio vetor (se o vetor for positivo) ou 0 (se o vetor for negativo). 
 
-O primeiro algoritmo que implementamos possui ordem cúbica de grandeza (O(N³)). Percebe-se que a essência deste algoritmo é utilizar =for= dentro de =for=, ocasionando assim, várias recursões durante o processo. Para começar, tivemos de implementar uma função que chamamos de =X=. Esta, por sua vez, é responsável por fazer a soma dos elementos no intervalo especificado. Para conseguirmos especificar o intervalo, criamos dois ponteiros: um que aponta para o início do intervalo e outro que aponta para o final.
+O primeiro algoritmo que implementamos possui ordem cÃºbica de grandeza (O(NÂ³)). Percebe-se que a essÃªncia deste algoritmo Ã© utilizar =for= dentro de =for=, ocasionando assim, vÃ¡rias recursÃµes durante o processo. Para comeÃ§ar, tivemos de implementar uma funÃ§Ã£o que chamamos de =X=. Esta, por sua vez, Ã© responsÃ¡vel por fazer a soma dos elementos no intervalo especificado. Para conseguirmos especificar o intervalo, criamos dois ponteiros: um que aponta para o inÃ­cio do intervalo e outro que aponta para o final.
 
-*Algoritmo O(N³)*
+*Algoritmo O(NÂ³)*
 #+BEGIN_SRC scheme
  (define (X lista ptr1 ptr2)
    (define (aux-X lista ptr1 ptr2 counter)
@@ -47,11 +47,11 @@ O primeiro algoritmo que implementamos possui ordem cúbica de grandeza (O(N³)). 
    (multi-max (MaxSoFar-aux lst)))
 #+END_SRC
 
-A função principal, ou seja, a função que retorna o subvetor de maior soma é a =MaxSoFar=. Ela depende da função =MaxSoFar-aux= e da =multi-max=. A primeira é responsável por, a partir de um elemento, calcular todas as somas possíveis com os outros e colocá-las em uma lista. Isso ocorre para cada elemento da lista. Sendo assim, se temos /N/ elementos, teremos /N/ sublistas em uma lista. Por conta disso, tivemos de implementar uma função que retornasse o valor máximo dessa lista de listas. E é este o propósito da segunda função mencionada =multi-max=.
+A funÃ§Ã£o principal, ou seja, a funÃ§Ã£o que retorna o subvetor de maior soma Ã© a =MaxSoFar=. Ela depende da funÃ§Ã£o =MaxSoFar-aux= e da =multi-max=. A primeira Ã© responsÃ¡vel por, a partir de um elemento, calcular todas as somas possÃ­veis com os outros e colocÃ¡-las em uma lista. Isso ocorre para cada elemento da lista. Sendo assim, se temos /N/ elementos, teremos /N/ sublistas em uma lista. Por conta disso, tivemos de implementar uma funÃ§Ã£o que retornasse o valor mÃ¡ximo dessa lista de listas. E Ã© este o propÃ³sito da segunda funÃ§Ã£o mencionada =multi-max=.
 
-* A estratégia do segundo algoritmo
+* A estratÃ©gia do segundo algoritmo
 
-O segundo algoritmo implementado tem uma ordem O(N log(N)). É baseada na ideia de dividir a lista ao meio e calcular a maior soma na primeira metade, na segunda metade e por fim, calcular a maior soma que passe pelo meio onde a lista incial foi dividida. Esse tipo de algoritmo é conhecido como algoritmo de /divisão e conquista/. No artigo original, também foi sugerido fazer o mesmo algoritmo, porém usando /arrays/. A seguir está o algoritmo implementado com listas:
+O segundo algoritmo implementado tem uma ordem O(N log(N)). Ã‰ baseada na ideia de dividir a lista ao meio e calcular a maior soma na primeira metade, na segunda metade e por fim, calcular a maior soma que passe pelo meio onde a lista incial foi dividida. Esse tipo de algoritmo Ã© conhecido como algoritmo de /divisÃ£o e conquista/. No artigo original, tambÃ©m foi sugerido fazer o mesmo algoritmo, porÃ©m usando /arrays/. A seguir estÃ¡ o algoritmo implementado com listas:
 
 
 *Algoritmo O(Nlog(N))*
@@ -86,19 +86,19 @@ O segundo algoritmo implementado tem uma ordem O(N log(N)). É baseada na ideia d
    (max (MaxSoFar-1 (car p)) (MaxSoFar-1 (cadr p)) (MaxMiddle p))))
 #+END_SRC
 
-Para melhor compreensão, vamos explicar melhor o objetivo da implementação do algoritmo a partir da =MaxSoFar=. A ideia é:
+Para melhor compreensÃ£o, vamos explicar melhor o objetivo da implementaÃ§Ã£o do algoritmo a partir da =MaxSoFar=. A ideia Ã©:
 
 1. Dividir a lista ao meio, criando "vetores" (na verdade, subvetores do vetor original, que foi implementado como uma lista);
-2. Calcular a maior soma em cada vetor através de um subvetor que comece pelo primeiro termo. No caso de vetores não-negativos, o subvetor é o próprio vetor.
-3. Calcular a maior soma que passe pelo intervalo intermediário onde foi dividida a lista.
+2. Calcular a maior soma em cada vetor atravÃ©s de um subvetor que comece pelo primeiro termo. No caso de vetores nÃ£o-negativos, o subvetor Ã© o prÃ³prio vetor.
+3. Calcular a maior soma que passe pelo intervalo intermediÃ¡rio onde foi dividida a lista.
 
-Perceba que, para calcular as maiores somas, foram necessárias as funções =createvector= e =MaxMiddle=. A primeira é necessária para criar os dois vetores, enquanto a segunda serve para computar a soma do intervalo intermediário. Sabendo que a =MaxMiddle= recebe uma lista com os dois vetores formados, ela opera com o /car/ e com o /cadr/ desta lista (ou seja, com os vetores)
+Perceba que, para calcular as maiores somas, foram necessÃ¡rias as funÃ§Ãµes =createvector= e =MaxMiddle=. A primeira Ã© necessÃ¡ria para criar os dois vetores, enquanto a segunda serve para computar a soma do intervalo intermediÃ¡rio. Sabendo que a =MaxMiddle= recebe uma lista com os dois vetores formados, ela opera com o /car/ e com o /cadr/ desta lista (ou seja, com os vetores)
 .
 ** Por que opera com o /(reverse (car lst))/?
 
-A ideia é simples: =MaxMiddle= opera com /cadr/ normalmente, pois o primeiro elemento do segundo vetor está logo após o intervalo intermediário. Porém, o primeiro elemento do primeiro vetor não está. Por isso, a função precisa do /reverse/, para que consiga computar a soma que está no intervalo intermediário.
+A ideia Ã© simples: =MaxMiddle= opera com /cadr/ normalmente, pois o primeiro elemento do segundo vetor estÃ¡ logo apÃ³s o intervalo intermediÃ¡rio. PorÃ©m, o primeiro elemento do primeiro vetor nÃ£o estÃ¡. Por isso, a funÃ§Ã£o precisa do /reverse/, para que consiga computar a soma que estÃ¡ no intervalo intermediÃ¡rio.
 
-* Implementação do terceiro algoritmo
+* ImplementaÃ§Ã£o do terceiro algoritmo
 
 
 
@@ -111,7 +111,7 @@ A ideia é simples: =MaxMiddle= opera com /cadr/ normalmente, pois o primeiro ele
         (auxX-array arr ptr1 (- ptr2 1) (+ counter (array-ref arr (vector (- ptr2 1)))))))
   (auxX-array arr ptr1 ptr2 (array-ref arr (vector (- ptr1 1)))))
 
-(define (MaxSoFar-3 lst) ; o código recebe uma lista e a transforma em array.
+(define (MaxSoFar-3 lst) ; o cÃ³digo recebe uma lista e a transforma em array.
   (let ((p (list->array lst))
         (MaxSoFar 0)
         (MaxEndingHere 0))
@@ -152,4 +152,4 @@ A ideia é simples: =MaxMiddle= opera com /cadr/ normalmente, pois o primeiro ele
 
 #+NAME:    fig:SED-FFVV
 
-[[C:\Users\carolmesquita\Downloads\GrafComplex.png]]
+[[https://raw.githubusercontent.com/rafaelmesqs/LP-2016.2-EMAp-project/master/GrafComplex.png]]
