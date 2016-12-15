@@ -136,11 +136,11 @@ A ideia é simples: =MaxMiddle= opera com /cadr/ normalmente, pois o primeiro el
 | Run Time        |     | 0,00015.N^3 | 7.Nlog(N) | 0,04.N |
 | (milissegundos) |     |             |           |        |
 |-----------------+-----+-------------+-----------+--------|
-| Time to solve   | N^2 | 150 ms      |           |        |
-| problem of size | N^3 | 150 s       |           |        |
-|                 | N^4 | 41 hrs      |           |        |
-|                 | N^5 | 4,8 yrs     |           |        |
-|                 | N^6 | 4,8 mill    |           |        |
+| Time to solve   | N^2 | 150 ms      |           | 4 ms   |
+| problem of size | N^3 | 150 s       |           | 40 ms  |
+|                 | N^4 | 41 hrs      |           | 0,4 s  |
+|                 | N^5 | 4,8 yrs     |           | 4 s    |
+|                 | N^6 | 4,8 mill    |           | 40 s   |
 |-----------------+-----+-------------+-----------+--------|
 | Max problem     | s   |             |           |        |
 | solved in       | min |             |           |        |
